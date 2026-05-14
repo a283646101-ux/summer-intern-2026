@@ -1,0 +1,11 @@
+# Secrets
+.env.daily_science
+
+# Generated files
+daily_science.txt
+daily_science_cron.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
