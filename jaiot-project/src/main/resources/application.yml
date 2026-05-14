@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: jaiot-project
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:}
+      model: gpt-4o-mini
+
+logging:
+  level:
+    com.jaiot.project: DEBUG
