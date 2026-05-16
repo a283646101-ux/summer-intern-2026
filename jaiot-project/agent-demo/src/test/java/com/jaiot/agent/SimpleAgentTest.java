@@ -1,10 +1,10 @@
 package com.jaiot.agent;
 
-import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.Duration;
 
@@ -17,8 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class SimpleAgentTest {
 
-    @MockitoBean
-    private ChatLanguageModel mockModel;
+    @MockBean
+    private ChatModel mockModel;
 
     @Test
     void contextLoads() {
