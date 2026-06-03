@@ -56,8 +56,8 @@ public class SimpleAgent {
 
     public SimpleAgent(ChatModel model, SensorTool sensorTool) {
         this.assistant = AiServices.<Assistant>builder(Assistant.class)
-                .chatLanguageModel(model)
-                .tools(sensorTool)  // 注册传感器工具
+                .chatModel(model)
+                .tools(sensorTool)
                 .build();
         log.info("🦞 虾哥 Agent 已就绪（带传感器工具）！");
     }

@@ -1,14 +1,60 @@
 server:
   port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
 
 spring:
   application:
     name: jaiot-project
-  ai:
-    openai:
-      api-key: ${OPENAI_API_KEY:}
-      model: gpt-4o-mini
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
+
+  # ── 开发环境：H2 内存数据库 ──
+  datasource:
+    url: jdbc:h2:mem:jaiot
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  # ── 生产环境：Supabase (PostgreSQL) ──
+  # 使用方法：启动时加 --spring.profiles.active=supabase
+  # 配置文件：application-supabase.yml
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# 大模型配置
+zhipu:
+  # 优先从环境变量 ZHIPU_API_KEY 读取，没有则用默认值
+  api-key: ${ZHIPU_API_KEY:18331eaf6401403f814843e0879181ae.ZXZEJl91b6BMAroU}
+  chat-model: glm-4-flash
+  embedding-model: text-embedding-3-small
+  temperature: 0.7
+  max-tokens: 2048
+
+# 激活 Profile 建议：
+# 本地开发默认使用 H2
+# 连接 Supabase 请在启动命令加入: -Dspring.profiles.active=supabase
+# 并在 application-supabase.yml 中配置你的数据库密码
 
 logging:
   level:
-    com.jaiot.project: DEBUG
+    com.jaiot: DEBUG
+    dev.langchain4j: INFO

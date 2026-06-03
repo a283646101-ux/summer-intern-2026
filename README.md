@@ -5,11 +5,12 @@
   <img src="https://img.shields.io/badge/Java-17-ED8B00?style=flat&logo=openjdk&logoColor=white" alt="Java 17"/>
   <img src="https://img.shields.io/badge/Spring_Boot-3.3-6DB33F?style=flat&logo=springboot&logoColor=white" alt="Spring Boot"/>
   <img src="https://img.shields.io/badge/LangChain4j-1.0-00A86B?style=flat" alt="LangChain4j"/>
-  <img src="https://img.shields.io/badge/Vue.js-3-4FC08D?style=flat&logo=vuedotjs&logoColor=white" alt="Vue 3"/>
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=flat&logo=react&logoColor=white" alt="React 18"/>
+  <img src="https://img.shields.io/badge/Vite-6-646CFF?style=flat&logo=vite&logoColor=white" alt="Vite 6"/>
+  <img src="https://img.shields.io/badge/Tailwind-3-06B6D4?style=flat&logo=tailwindcss&logoColor=white" alt="Tailwind CSS"/>
+  <img src="https://img.shields.io/badge/Supabase-PostgreSQL-3FCF8E?style=flat&logo=supabase&logoColor=white" alt="Supabase"/>
   <img src="https://img.shields.io/badge/Python-3-3776AB?style=flat&logo=python&logoColor=white" alt="Python"/>
   <img src="https://img.shields.io/badge/OpenClaw-Agent-6C47FF?style=flat" alt="OpenClaw"/>
-  <img src="https://img.shields.io/badge/MySQL-8-4479A1?style=flat&logo=mysql&logoColor=white" alt="MySQL"/>
-  <img src="https://img.shields.io/badge/Redis-7-DC382D?style=flat&logo=redis&logoColor=white" alt="Redis"/>
   <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white" alt="Docker"/>
 </p>
 
@@ -21,55 +22,107 @@
 
 | # | 模块 | 关键词 | 技术栈 |
 |---|------|--------|--------|
-| 🏛️ | **[JAIoT 智能养护系统](#-jaiot-智能养护-agent-系统)** | 后端·AI Agent·IoT·REST API | Java 17, Spring Boot 3.3, LangChain4j, MySQL, Redis, MQTT |
-| 🛠️ | **[OpenClaw 工具集](#-openclaw-ai-工具集)** | AI 编排·LLM API·自动化·定时推送 | Python, Zhipu GLM, OpenClaw Agent, SMTP, Cron |
+| 🏛️ | **[JAIoT 智能养护系统](#-jaiot-智能养护全栈系统)** | 全栈·AI Agent·RAG·IoT·Supabase | Java 17, Spring Boot 3.3, LangChain4j, React, Tailwind, Supabase |
+| 🛠️ | **[OpenClaw 工具集](#-openclaw-ai-工具集)** | AI 编排·LLM API·自动化·定时推送 | Python, Zhipu GLM, OpenClaw Agent, SMTP |
 | 📐 | **[Algs4 算法练习](#-algs4-算法练习)** | 数据结构·算法·笔试准备 | Java, 《算法·第四版》 |
 
 ---
 
-## 🏛️ JAIoT 智能养护 Agent 系统
+## 🏛️ JAIoT 智能养护全栈系统
 
-> **物联网 + AI Agent 驱动的植物养护决策系统**
+> **Java AI + IoT = JAIoT 🦞 — 从零构建的 AI Agent 全栈平台**
 
-一个从零构建的 Java 后端工程，融合 **Spring Boot、LangChain4j Agent、IoT 传感器数据采集、AI 驱动决策** 的完整全链路项目。
+基于 **Spring Boot 3.3 + LangChain4j 1.0** 构建的植物健康智能管理平台，是一个覆盖**后端、AI Agent、RAG、前端可视化、云数据库**的完整全栈项目。
 
-### ✨ 核心功能
+### 🚀 项目演进
 
-| 模块 | 状态 | 说明 |
+本项目经历了两个阶段的重构演进：
+
+| 阶段 | 版本 | 说明 |
 |------|------|------|
-| 🎯 **Agent 灌溉决策 API** | ✅ 已完成 | Agent 查询传感器数据 → 自动判断是否需要浇水 → 返回决策 + 理由 |
-| 🧰 **@Tool 传感器查询工具** | ✅ 已完成 | LangChain4j Tool 注解，Agent 可主动调用获取温湿度数据（Mock） |
-| 🔌 **IoT 数据采集** | 📋 规划中 | MQTT 协议接收传感器数据，Spring Integration 集成 |
-| 🌐 **REST API** | ✅ 已完成 | 通用对话 + Agent 决策双接口 |
-| 🇯🇵 **日语报告** | 📋 规划中 | Agent 多语言输出，同步练习日语 |
+| 🐣 **v1 — Agent Demo** | 初始 | 单体 Agent 演示，LangChain4j + 单工具灌溉决策 |
+| 🚀 **v2 — 全栈平台** | 当前 | 完整后端重构 + React 前端 + Supabase + RAG + 多工具 Agent |
 
-### 🖥️ 代码亮点
+### ✨ 六大核心功能
 
-**Agent 决策流程：**
+| # | 功能 | 说明 | 技术亮点 |
+|---|------|------|----------|
+| 🌡️ | **传感器数据看板** | 实时/历史温湿度、土壤湿度、光照数据展示 | Recharts 图表 + 定时轮询 |
+| 🤖 | **Agent 多工具决策** | Agent 同时查询温/湿/光/土壤 4 个传感器，综合判断养护动作 | 多 `@Tool` 协作 + Function Calling |
+| 💬 | **流式输出（打字机）** | Agent 回复逐字推送到前端，实时展示思考过程 | SSE + WebFlux + 流式 ChatModel |
+| 🇯🇵 | **日语养护报告** | Agent 自动生成日语版养护建议，多语言展示 | 多语言 System Prompt |
+| 📚 | **RAG 知识库查询** | 基于植物养护文档的智能问答 | Embedding + Vector Store + 检索增强生成 |
+| 📝 | **历史决策记录** | 所有 Agent 决策持久化，支持按设备/时间查询 | JPA + Supabase (PostgreSQL) |
+
+### 🖥️ 系统架构
+
 ```
-POST /agent/decision
-  → Agent 调用 queryLatestSensorData(sensorId)   ← @Tool 注解方法
-  → 大模型分析温度/湿度数据
-  → 按预设规则判断（温度>30°C/湿度<40% → 需浇水）
-  → 返回结构化 JSON：{ decision, temperature, humidity, reason, advice }
+┌──────────────────────────────────────────────────────────┐
+│                     React 前端 (Vite)                     │
+│  Dashboard · 传感器图表 · Chat 界面 · RAG 问答 · 历史查询 │
+└────────────────────┬─────────────────────────────────────┘
+                     │ REST / SSE API
+┌────────────────────▼─────────────────────────────────────┐
+│              Spring Boot 3.3 后端                         │
+│  ┌──────┬──────┬──────┬──────┬──────┬──────┐            │
+│  │Agent │Sensor│Decision│Chat│RAG │Health│            │
+│  │Ctrl  │Ctrl  │Ctrl   │Ctrl│Ctrl │Ctrl  │            │
+│  └──┬───┴──┬───┴───┬──┴──┬──┴──┬──┴──┬───┘            │
+│     │      │       │     │     │      │                  │
+│  ┌──▼──┐┌──▼──┐┌──▼──┐┌──▼──┐┌──▼──┐                    │
+│  │Agent││Sensor││Decis││Chat ││RAG  │                    │
+│  │Svc  ││Svc  ││Svc  ││Svc  ││Svc  │                    │
+│  └──┬──┘└─────┘└─────┘└─────┘└──┬──┘                    │
+│     │                            │                        │
+│  ┌──▼─────────────────────────┐  │                        │
+│  │  LangChain4j Agent Core    │  │                        │
+│  │  AiServices + 4×@Tool      │  │                        │
+│  └──────┬─────────────────────┘  │                        │
+│         │                        │                        │
+│  ┌──────▼──────┐    ┌────────────▼──────────┐             │
+│  │ ChatModel   │    │ EmbeddingModel        │             │
+│  │ (智谱GLM-4) │    │ (智谱Embedding-2)      │             │
+│  └─────────────┘    └───────────┬───────────┘             │
+│                                 │                         │
+└─────────────────────────────────┼─────────────────────────┘
+                                  │
+    ┌─────────────────────────────┼──────────────────────┐
+    │          Supabase (PostgreSQL)                     │
+    │  sensor_data · decision_log · chat_messages · rag  │
+    └────────────────────────────────────────────────────┘
 ```
 
-**关键设计决策：**
-- 使用 `AiServices.builder()` + `.chatLanguageModel()` + `.tools()` 构建 Agent
-- 工具方法与业务逻辑解耦，`@Tool` 注解暴露给 LLM
-- 决策结果 DTO 封装，Controller 层兜底 JSON 解析异常
+### 🧰 Agent 多工具决策流程
+
+```
+POST /api/agent/decision?sensorId=device-001
+  → Agent 调用 queryTemperature(sensorId)    ← @Tool
+  → Agent 调用 queryHumidity(sensorId)       ← @Tool
+  → Agent 调用 querySoilMoisture(sensorId)   ← @Tool
+  → Agent 调用 queryLightIntensity(sensorId) ← @Tool
+  → LLM 综合分析 4 路传感器数据
+  → 输出 JSON：{ decision, reason, advice, japaneseReport }
+```
 
 ### 🧪 快速启动
 
 ```bash
-cd jaiot-project/agent-demo
-mvn clean package -DskipTests
-java -jar target/agent-demo-0.0.1-SNAPSHOT.jar
+# 后端
+cd jaiot-project
+export ZHIPU_API_KEY="你的智谱API密钥"
+mvn spring-boot:run -pl agent-demo
 
-# 测试 Agent 决策
-curl -X POST http://localhost:8081/api/agent/decision \
-  -H "Content-Type: application/json" -d "{}"
+# 前端
+cd jaiot-project/jaiot-frontend
+npm install
+npm run dev
 ```
+
+### 🗄️ 数据库
+
+- **开发环境**: H2 (无需配置)
+- **生产环境**: Supabase PostgreSQL（`supabase-schema.sql` + `application-supabase.yml`）
+- 含 50+ 条真实场景模拟种子数据（3 设备 × 不同时段 × 不同环境条件）
 
 ---
 
@@ -99,7 +152,6 @@ curl -X POST http://localhost:8081/api/agent/decision \
 | 🔬 生活常识 | 冰箱为什么不能给房间降温 | 卡诺热机效率 η=1-Tc/Th |
 | 🏠 生活常识 | 微波炉加热的原理 | E=hν, 介电加热 |
 | 🔬 生活常识 | 为什么油锅着火不能用水浇 | 水汽化膨胀约 1700 倍 |
-| 🧍 日常身体 | 运动后为什么肌肉酸痛 | 无氧呼吸：C₆H₁₂O₆→2C₃H₆O₃ |
 
 #### 🧪 快速启动
 
@@ -133,10 +185,21 @@ python3 daily_science.py
 
 ```
 summer-intern-2026/
-├── jaiot-project/              # 🏛️ Java + AI + IoT 核心项目
-│   ├── agent-demo/             #    LangChain4j Agent 演示模块（带 Tool）
-│   ├── pom.xml                 #    父 POM 配置
-│   └── README.md               #    项目详细文档
+├── jaiot-project/              # 🏛️ JAIoT 全栈智能养护系统
+│   ├── agent-demo/             #    Agent 决策模块（LangChain4j）
+│   ├── jaiot-frontend/         #    React 前端（Vite + Tailwind）
+│   ├── src/                    #    重构后端
+│   │   └── main/java/com/jaiot/
+│   │       ├── agent/          #      Agent 多工具 + 接口定义
+│   │       ├── config/         #      ChatModel / Embedding / Web 配置
+│   │       ├── controller/     #      REST 控制器 × 6
+│   │       ├── dto/            #      请求/响应 DTO
+│   │       ├── entity/         #      JPA 实体 × 4
+│   │       ├── repository/     #      Spring Data JPA
+│   │       ├── scheduler/      #      定时模拟传感器数据
+│   │       └── service/        #      业务逻辑层
+│   ├── supabase-schema.sql     #    PostgreSQL 建表 + 种子数据
+│   └── README.md               #    项目详细技术文档
 │
 ├── openclaw-tools/             # 🛠️ OpenClaw AI 工具集
 │   └── daily-science-pusher/   #    AI 每日科普推送（Python + Zhipu GLM）
@@ -153,9 +216,11 @@ summer-intern-2026/
 ## 🧑‍💻 关于我
 
 - **准大三学生**，方向：Java 后端开发 / AI Agent 应用研发
-- 熟练 **Spring Boot / MyBatis / Redis / MySQL** 后端技术栈
-- 具备 **Vue 3 + 微信小程序** 前端实战经验
-- 深度实践 **AI Agent 开发**：LangChain4j 集成、OpenClaw 编排、LLM API 调用
+- 熟练 **Spring Boot / MyBatis / Redis / MySQL / PostgreSQL** 后端技术栈
+- 具备 **React + Vue 3 + 微信小程序** 前端实战经验
+- 深度实践 **AI Agent 开发**：LangChain4j Agent + Tool + RAG 完整链路
+- 独立完成 **全栈项目架构**：从后端 API 设计 → 前端可视化 → 云数据库部署
+- **Supabase** 云数据库实战部署经验
 - **Google Developer Program** 成员，持续关注前沿技术
 
 ---

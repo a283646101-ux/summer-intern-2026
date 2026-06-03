@@ -1,0 +1,29 @@
+# =============================================================
+# JAIoT 智能养护系统 - Supabase (PostgreSQL) 生产环境配置
+# =============================================================
+
+spring:
+  datasource:
+    # 请将 [YOUR_PROJECT_REF] 替换为 Supabase 控制台 Settings -> Database 中的 Project Ref
+    # 请将 [YOUR_PASSWORD] 替换为你在创建项目时设置的数据库密码
+    url: jdbc:postgresql://aws-0-ap-northeast-1.pooler.supabase.com:5432/postgres?user=postgres.hjzvxclofstnzfyzfuyt&password=[YOUR_PASSWORD]
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      # 开发测试阶段建议用 update，生产环境建议用 none 或 validate
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          # Supabase 连接池建议开启
+          batch_size: 10
+
+# 覆盖默认的日志级别（可选）
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
