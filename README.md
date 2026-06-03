@@ -130,37 +130,44 @@ npm run dev
 
 > **基于 OpenClaw Agent 编排框架 + 大模型 API 的自动化工具**
 
-### 🦞 Daily Science Pusher — AI 每日科普推送
+### 🤖 AI 前沿资讯聚合 & 教程生成系统
 
-一条赛博龙虾每天为你打工：**自动选题 → AI 生成科普文章 → 格式化输出 → 定时推送邮箱**，全流程无人值守。
+多信源聚合 AI 技术资讯 → LLM 摘要去重 → 分层输出（速览/深度/教程）→ 每 3 天邮件推送，全流程自动化。
 
 #### ✨ 特性
 
-- 🤖 **AI 全自动生成** — 利用智谱 GLM-4-Flash 生成高质量科普内容
-- 🧠 **结构化科普模板** — 现象描述 → 原理解析（含公式）→ 生活建议 → 冷知识
-- 🏥 **25 道精选题库** — 覆盖人体疾病、健康饮食、日常身体、物理原理、生活常识五大类
-- 🧮 **带公式的硬核科普** — 每个科普至少引入 1~2 个核心公式并逐符号解释
-- 📬 **邮件自动推送** — 每天早 8:00 通过 QQ 邮箱 SMTP 准时送达
-- ⏰ **双重定时保障** — OpenClaw Cron + 系统 Crontab 双保险
+- 📡 **三信道聚合** — Arxiv 最新论文 / GitHub Trending AI 仓库 / Hacker News AI 讨论
+- 🤖 **LLM 智能处理** — 智谱 GLM-4-Flash 自动摘要、去重、生成教程
+- 📊 **三层输出** — 🚀 极简速览（1 句）→ 📖 深度阅读（技术拆解）→ 🛠️ 动手教程（代码/步骤）
+- 🔄 **智能去重** — 基于 URL/title 哈希 + 历史记录，避免重复推送
+- 📬 **邮件推送** — 通过 QQ 邮箱 SMTP 准时送达
+- ⏰ **每 3 天执行** — Crontab + OpenClaw Cron 双保险
 
-#### 🖥️ 选题示例
+#### 🖥️ 内容示例
 
-| 类别 | 选题 | 涉及公式 |
-|------|------|----------|
-| 🏥 人体疾病 | 高血压为什么是"沉默杀手" | 伯努利原理、泊肃叶定律 |
-| 🥗 健康饮食 | 为什么空腹喝咖啡伤胃 | 胃液 pH 值、质子泵机制 |
-| 🔬 生活常识 | 冰箱为什么不能给房间降温 | 卡诺热机效率 η=1-Tc/Th |
-| 🏠 生活常识 | 微波炉加热的原理 | E=hν, 介电加热 |
-| 🔬 生活常识 | 为什么油锅着火不能用水浇 | 水汽化膨胀约 1700 倍 |
+| 层次 | 说明 | 示例 |
+|------|------|------|
+| 🚀 速览 | 1 句话概括 | DeepSeek-R1 发布开源推理模型，数学推理超越 GPT-4 |
+| 📖 深度 | 技术拆解 | 基于强化学习 + 思维链蒸馏，推理能力大幅提升... |
+| 🛠️ 教程 | 动手实操 | 从 Ollama 下载 → 本地部署 → 调用 API 三步走 |
 
 #### 🧪 快速启动
 
 ```bash
-cd openclaw-tools/daily-science-pusher
-pip install zhipuai
-export ZHIPU_API_KEY="你的智谱 API Key"
-python3 daily_science.py
+cd openclaw-tools/ai-news-aggregator
+cp config.template.py config.py
+# 编辑 config.py 填入 ZHIPU_API_KEY
+pip install requests zhipuai
+python3 ai_news_aggregator.py
 ```
+
+---
+
+### 🦞 Daily Science Pusher — AI 每日科普推送（旧版）
+
+AI 全自动选题 → 结构化科普生成 → 邮箱推送，附核心公式解析。
+
+[→ 查看详情](openclaw-tools/daily-science-pusher/)
 
 ---
 
@@ -202,7 +209,8 @@ summer-intern-2026/
 │   └── README.md               #    项目详细技术文档
 │
 ├── openclaw-tools/             # 🛠️ OpenClaw AI 工具集
-│   └── daily-science-pusher/   #    AI 每日科普推送（Python + Zhipu GLM）
+│   ├── ai-news-aggregator/     #    🤖 AI 资讯聚合 + 教程生成（Python + Zhipu GLM）
+│   └── daily-science-pusher/   #    🦞 AI 每日科普推送（旧版）
 │
 ├── algs4-practice/             # 📐 算法练习（《算法·第四版》）
 │   └── README.md               #     练习记录
